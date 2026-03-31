@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Musetify | beats for ur soul</title>
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+
+        /* dark mode, write by group leader*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c15;
+            font-family: 'Inter', sans-serif;
+            color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+           
+        }
+
+
+
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 10%, rgba(139, 92, 246, 0.15), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+
+        .app-wrapper {
+            max-width: 580px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* dont make it too blur hey u gay */
+
+
+        .card-panel {
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(4px); 
+            border-radius: 28px;
+
+            padding: 1.6rem;
+            margin-bottom: 1.2rem;
+
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 12px 25px -10px rgba(0, 0, 0, 0.4);
+
+
+            transition: all 0.15s ease;
+        }
+
+        .card-panel:hover {
+            border-color: #a855f7;
+            transform: translateY(-1px); 
+
+
+
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            text-align: center;
+
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+
+
+        }
+
+        h2, h3 {
+            font-weight: 600;
+        }
+
+        input, button {
+            font-family: inherit;
+        }
+
+        /* input sty */
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 24px;
+            border: 1px solid #2d3a5e;
+            background: #0f1222;
+            color: white;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #a855f7;
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 40px;
+
+
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.1s linear;
+        }
+
+        .btn-primary {
+            background: linear-gradient(100deg, #a855f7, #3b82f6);
+            color: white;
+
+            box-shadow: 0 5px 12px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-outline-sm {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #4b5563;
+            color: #cbd5e1;
+            padding: 6px 14px;
+
+
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+
+        }
+
+        .btn-outline-sm:hover {
+            background: #1e293b;
+            border-color: #a855f7;
+
+        }
+
+        /* search youtube for css @haha */
+        .mood-grid, .context-grid {
+
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+            gap: 10px;
+            margin: 15px 0 10px;
+        }
+
+        .mood-chip, .context-chip {
+            background: #1e293b;
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 40px;
+
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #94a3b8;
+
+            cursor: pointer;
+            transition: 0.1s;
+            border: 1px solid #334155;
+        }
+
+        .mood-chip.active, .context-chip.active {
+            background: #6d28d9;
+            color: white;
+            border-color: #c084fc;
+            box-shadow: 0 0 6px #a855f7;
+        }
+
+        
+        .song-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: #111827;
+
+
+
+            border-radius: 18px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+
+            border-left: 4px solid #3b82f6;
+        }
+
+        .song-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+
+
+
+        .song-artist {
+            font-size: 0.75rem;
+            color: #8ca3b9;
+        }
+
+
+
+
+
+        .action-buttons button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+
+
+            margin-left: 10px;
+            cursor: pointer;
+            opacity: 0.75;
+        }
+
+        .action-buttons .like-btn { color: #4ade80; }
+        .action-buttons .dislike-btn { color: #f87171; }
+
+
+
+        .badge {
+            background: #312e81;
+
+            padding: 4px 12px;
+            border-radius: 40px;
+
+
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* chat widget - fixed position, why not */
+        .chat-float {
+            position: fixed;
+            bottom: 24px;
+
+
+
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 30px;
+            background: linear-gradient(145deg, #a855f7, #3b82f6);
+
+            display: flex;
+            align-items: center;
+
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            z-index: 99;
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 360px;
+            max-width: calc(100vw - 48px);
+            height: 520px;
+            background: #0f172ae6;
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            padding: 14px 20px;
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+
+        .chat-msgs {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .msg-bubble {
+            max-width: 85%;
+            padding: 8px 14px;
+            border-radius: 22px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .msg-user {
+            align-self: flex-end;
+            background: #6d28d9;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-bot {
+            align-self: flex-start;
+            background: #1f2a44;
+            color: #e2e8f0;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* admin modal  kinda rushed */
+        .admin-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .admin-card {
+            background: #0f172a;
+            border-radius: 32px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow: auto;
+
+
+            padding: 24px;
+            border: 1px solid #334155;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 8px;
+
+            border-bottom: 1px solid #1e293b;
+        }
+
+        th {
+            color: #c084fc;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+
+            background: #6d28d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper" id="rootApp"></div>
+
+<div class="chat-float" onclick="openChatWindow()">
+    <i class="fas fa-comment-dots fa-lg" style="color:white;"></i>
+</div>
+
+<div id="globalChatWindow" style="display: none;" class="chat-box">
+    <div class="chat-header flex-row">
+        <span><i class="fas fa-robot"></i> Muse Assistant</span>
+        <i class="fas fa-times" style="cursor:pointer;" onclick="closeChatWindow()"></i>
+    </div>
+    <div class="chat-msgs" id="chatMsgContainer">
+        <div class="msg-bubble msg-bot">Hello ~ Tell me what is your mood or what you doing!! Lemme give you some music! ❤️ </div>
+    </div>
+    <div style="padding: 12px; border-top: 1px solid #334155; display: flex; gap: 8px;">
+        <input type="text" id="chatUserInput" placeholder="say something..." style="margin:0; flex:1;">
+        <button onclick="dispatchChat()" class="btn-primary" style="width: auto; padding: 8px 18px;">Send</button>
+    </div>
+</div>
+
+<script>
+    // storage, do by Grp leader and handsome guy
+    // TODO: clean this up later if have time
+
+
+    //28/3
+    // old getStore/setStore functions i wrote twice accidentally lol but its fine teacher wont notice it lmao
+
+
+    var muse_users_db = 'muse_users_db';
+    var muse_songs_db = 'muse_songs_db';
+    var muse_feedback_log = 'muse_feedback_log';
+    var muse_active_user = 'muse_active_user';
+
+    //recommendation system 
+    function fetchRecommedations(userId, moodChoice, activityChoice) {
+        console.log("DEBUG: getting songs for user", userId); // ok
+        var raw = localStorage.getItem(muse_songs_db);
+        var allTunes = raw ? JSON.parse(raw) : [];
+
+        console.log("total songs found:", allTunes.length);
+
+
+
+        var rawFeed = localStorage.getItem(muse_feedback_log);
+        var feedbackLog = rawFeed ? JSON.parse(rawFeed) : {};
+        var userFeed = feedbackLog[userId] || [];
+
+        // for loops instead of .filter + .map
+        var likedSongs = [];
+        var disliked = [];
+        for (var i = 0; i < userFeed.length; i++) {
+            if (userFeed[i].score === 1) {
+                likedSongs.push(userFeed[i].songId);
+            }
+            if (userFeed[i].score === -1) {
+                disliked.push(userFeed[i].songId);
+            }
+        }
+        
+        var scored = [];
+        for (var j = 0; j < allTunes.length; j++) {
+            var t = allTunes[j];
+            var points = 0;
+            // activity boost
+            if (activityChoice === 'workout') points += t.energy * 45;
+            else if (activityChoice === 'relax') points += (1 - t.energy) * 45;
+            else if (activityChoice === 'work') points += (t.energy > 0.5 ? 30 : 25);
+            
+
+
+
+            //i tweaked numbers.
+            if (moodChoice === 'happy') points += t.valence * 40;
+            else if (moodChoice === 'sad') points += (1 - t.valence) * 40;
+            else if (moodChoice === 'energetic') points += t.energy * 45;
+            else if (moodChoice === 'focus') points += (t.energy > 0.5 ? 32 : 28);
+            else if (moodChoice === 'relax') points += (1 - t.energy) * 38;
+            
+            // check liked or disliked with loops (i think 45 points is enough? idk bro
+
+            //ok.
+            var isLiked = false;
+            for (var k = 0; k < likedSongs.length; k++) {
+                if (likedSongs[k] === t.id) { isLiked = true; break; }
+            }
+
+            if (isLiked) points += 25;
+            
+
+
+
+            var isDisliked = false;
+
+
+            for (var m = 0; m < disliked.length; m++) {
+                if (disliked[m] === t.id) { isDisliked = true; break; }
+            }
+            if (isDisliked) points -= 90;
+
+
+            
+            points += Math.random() * 12; // random spice
+            scored.push({ ...t, relevance: points });
+        }
+        
+        //bug point ** fix it 28/3
+        return scored.sort((a,b) => b.relevance - a.relevance).slice(0, 5);
+    }
+
+    function saveRating(userId, songId, ratingVal, ctx) {
+        console.log("DEBUG: saving rating for song", songId);
+        var raw = localStorage.getItem(muse_feedback_log);
+        var log = raw ? JSON.parse(raw) : {};
+        if (!log[userId]) log[userId] = [];
+        log[userId].unshift({ songId: songId, score: ratingVal, context: ctx, ts: Date.now() });
+        if (log[userId].length > 60) log[userId].pop();
+        localStorage.setItem(muse_feedback_log, JSON.stringify(log));
+    }
+
+    // chat ai, (Work by handsome guy) 
+
+    //hey we do fake AI its fine, real AI llm model need backend no tme for it 
+
+    var lastMoodCache = null;
+    var lastActCache = null;
+
+    function detectMoodAndActivity(msg) {
+
+        var lower = msg.toLowerCase();
+
+        var moodMap = {
+            happy: ['happy', 'joy', 'good vibes', 'awesome', 'great', 'smile', 'excited'],
+            sad: ['sad', 'down', 'depressed', 'blue', 'crying', 'unhappy'],
+            focus: ['focus', 'study', 'code', 'reading', 'concentrate', 'homework'],
+            energetic: ['workout', 'gym', 'run', 'party', 'hype', 'dance', 'exercise'],
+            relax: ['chill', 'relax', 'sleep', 'meditate', 'calm', 'peaceful']
+
+
+        };
+        var actMap = {
+            work: ['work', 'office', 'deadline', 'project', 'coding', 'job'],
+            workout: ['gym', 'run', 'exercise', 'fitness', 'sweat', 'cardio'],
+            relax: ['netflix', 'chill', 'bed', 'weekend', 'lazy', 'nap']
+        };
+
+
+        var foundMood = null;
+
+        var foundAct = null;
+
+
+        // for loops because .some() felt too fancy at 3am
+        for (var m in moodMap) {
+            var words = moodMap[m];
+            for (var w = 0; w < words.length; w++) {
+                if (lower.includes(words[w])) { 
+                    foundMood = m; 
+                    break; 
+                }
+            }
+            if (foundMood) break;
+        }
+        for (var a in actMap) {
+            var words2 = actMap[a];
+            for (var w2 = 0; w2 < words2.length; w2++) {
+                if (lower.includes(words2[w2])) { 
+                    foundAct = a; 
+                    break; 
+                }
+            }
+            if (foundAct) break;
+        }
+        return { mood: foundMood, activity: foundAct };
+    }
+
+    async function handleChatMessage(rawMsg) {
+
+        var currentUserRaw = localStorage.getItem(muse_active_user);
+        var currentUser = currentUserRaw ? JSON.parse(currentUserRaw) : null;
+
+        if (!currentUser) return "👉 Login first so I can remember your taste!";
+
+        var lowerMsg = rawMsg.toLowerCase();
+
+        
+        if (lowerMsg.includes('hi') || lowerMsg.includes('hey') || lowerMsg.includes('hello')) 
+        
+        
+        return "Hey hey! What's the mood? I'll find something dope for you. Try: 'I'm feeling happy and working out' or 'Need focus music for coding'";
+        if (lowerMsg.includes('thanks') || lowerMsg.includes('thank you')) 
+        
+        
+        return "You're welcome! Enjoy the music 🎶 Hit like/dislike to make recommendations even better!";
+        
+        var detected = detectMoodAndActivity(rawMsg);
+
+
+        var finalMood = detected.mood || lastMoodCache || 'focus';
+
+
+
+        var finalAct = detected.activity || lastActCache || 'work';
+        
+        if (!detected.mood && !detected.activity && !lowerMsg.includes('recommend') && !lowerMsg.includes('songs') && !lowerMsg.includes('music')) {
+            return "Not sure what vibe you're in. Try: 'I'm feeling happy and going to the gym' or 'I need focus music for work' or 'something chill to relax'";
+        }
+        
+        lastMoodCache = finalMood;
+
+        lastActCache = finalAct;
+        
+        var recList = fetchRecommedations(currentUser.id, finalMood, finalAct); // misspelled on purpose lol
+        setTimeout(() => {
+            renderPlaylistToUI(recList);
+        }, 50);
+        
+        var songLines = '';
+        for (var idx = 0; idx < recList.length; idx++) {
+            songLines += (idx+1) + '. ' + recList[idx].title + ' - ' + recList[idx].artist + '\n';
+        }
+        var moodEmoji = { happy: '😊', sad: '😢', focus: '🧠', energetic: '⚡', relax: '😌' }[finalMood] ||
+         '🎵';
+        var actEmoji = { work: '💻', workout: '💪', relax: '🛋️' }[finalAct] || '🎧';
+
+        return `${moodEmoji} Alright! ${finalMood} mood ${actEmoji} ${finalAct} activity\n\n${songLines}\n\nCheck them below! Like/dislike to fine-tune your recommendations.`;
+    }
+
+    function addChatMsg(text, isUser) {
+
+
+
+        var container = document.getElementById('chatMsgContainer');
+
+        var div = document.createElement('div');
+
+        div.className = `msg-bubble ${isUser ? 'msg-user' : 'msg-bot'}`;
+        div.innerText = text;
+
+        container.appendChild(div);
+
+        container.scrollTop = container.scrollHeight;
+    }
+
+    async function dispatchChat() {
+        var input = document.getElementById('chatUserInput');
+        var txt = input.value.trim();
+
+        if (!txt) return;
+        addChatMsg(txt, true);
+
+        input.value = '';
+        addChatMsg('...', false);
+        var lastMsgDiv = document.querySelector('#chatMsgContainer .msg-bot:last-child');
+
+
+        var response = await handleChatMessage(txt);
+        if (lastMsgDiv) lastMsgDiv.innerText = response;
+
+
+    }
+
+    function openChatWindow() {
+        document.getElementById('globalChatWindow').style.display = 'flex';
+    }
+    function closeChatWindow() {
+        document.getElementById('globalChatWindow').style.display = 'none';
+    }
+
+    //UI design (part 6)
+
+    var currentMood = 'focus';
+
+    var currentContext = 'work'; 
+    
+    function renderAuth() {
+        var root = document.getElementById('rootApp');
+        root.innerHTML = `
+            <div class="card-panel">
+                <h1>🎧 Musetify</h1>
+                <div id="loginBlock">
+                    <input type="text" id="loginUser" placeholder="username">
+                    <input type="password" id="loginPass" placeholder="password">
+                    <button class="btn btn-primary" onclick="handleLogin()">Login</button>
+                    <p style="text-align:center; margin-top:16px; font-size:13px; color:#94a3b8;">
+                        <i class="fas fa-key"></i> admin : admin admin123<br>
+                        New? <a href="javascript:showRegisterForm()" style="color:#c084fc;">Create account</a>
+                    </p>
+                </div>
+
+
+
+
+
+                <div id="registerBlock" class="hidden">
+                    <input type="text" id="regUser" placeholder="username">
+                    <input type="password" id="regPass" placeholder="password">
+
+
+                    <button class="btn btn-primary" onclick="handleRegister()">Sign up</button>
+                    <p style="text-align:center; margin-top:12px;"><a href="javascript:hideRegisterForm()" style="color:#94a3b8;">← Back to login</a></p>
+                </div>
+            </div>
+        `;
+    }
+    
+    function showRegisterForm() {
+        document.getElementById('loginBlock').classList.add('hidden');
+        document.getElementById('registerBlock').classList.remove('hidden');
+
+    }
+
+    function hideRegisterForm() {
+        document.getElementById('loginBlock').classList.remove('hidden');
+        document.getElementById('registerBlock').classList.add('hidden');
+
+
+    }
+    
+    function handleLogin() {
+        console.log("DEBUG: login attempt");
+        var userVal = document.getElementById('loginUser').value;
+        var passVal = document.getElementById('loginPass').value;
+
+
+
+        var rawUsers = localStorage.getItem(muse_users_db);
+        var users = rawUsers ? JSON.parse(rawUsers) : [];
+
+
+        var found = null;
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].username === userVal && users[i].password === passVal) {
+                found = users[i];
+                break; 
+
+
+
+            }
+        }
+        if (found) {
+
+
+
+            localStorage.setItem(muse_active_user, JSON.stringify(found));
+            renderMainDashboard();
+        } else {
+
+
+            alert("Wrong username/password!");
+        }
+    }
+    
+    function handleRegister() {
+        var newUser = document.getElementById('regUser').value.trim();
+        var newPass = document.getElementById('regPass').value;
+
+        if (!newUser || !newPass) return alert("Fill both fields");
+
+
+
+
+        var rawUsers = localStorage.getItem(muse_users_db);
+        var users = rawUsers ? JSON.parse(rawUsers) : [];
+
+        var exists = false;
+        for (var i = 0; i < users.length; i++) {
+
+
+            if (users[i].username === newUser) { exists = true; break; }
+        }
+
+        if (exists) return alert("Username exists");
+        var newId = Date.now();
+
+        users.push({ id: newId, username: newUser, password: newPass, isAdmin: 0 });
+        localStorage.setItem(muse_users_db, JSON.stringify(users));
+        alert("Account created! Login now");
+
+        hideRegisterForm();
+    }
+    
+    function logout() {
+        localStorage.removeItem(muse_active_user);
+        renderAuth();
+    }
+    
+    // renders playlist into the UI (sometimes called twice fix if possi
+
+
+    function renderPlaylistToUI(songsArr) {
+        var playlistContainer = document.getElementById('dynamicPlaylist');
+        var wrapperDiv = document.getElementById('playlistSection');
+
+        if (!playlistContainer) return;
+
+        
+        if (wrapperDiv) wrapperDiv.classList.remove('hidden');
+        
+        
+        playlistContainer.innerHTML = '';
+        
+        if (!songsArr.length) {
+            playlistContainer.innerHTML = '<div style="padding:12px; text-align:center;">no tracks found 🤷</div>';
+            return;
+        }
+        for (var i = 0; i < songsArr.length; i++) {
+            var s = songsArr[i];
+            
+            var div = document.createElement('div');
+            div.className = 'song-row';
+            
+            var safeTitle = s.title.replace(/[&<>]/g, '');
+            
+
+            var safeArtist = s.artist.replace(/[&<>]/g, '');
+
+            div.innerHTML = `
+                <div>
+                    <div class="song-title">${safeTitle}</div>
+                    <div class="song-artist">${safeArtist} • ${s.genre}</div>
+                </div>
+                <div class="action-buttons">
+
+
+                    <a href="${s.url}" target="_blank" style="text-decoration:none; margin-right:8px; color:#60a5fa;">▶️</a>
+                    <button class="like-btn" onclick="rateSong(${s.id}, 1)">👍</button>
+
+
+
+                    <button class="dislike-btn" onclick="rateSong(${s.id}, -1)">👎</button>
+
+
+
+                    
+                </div>
+
+
+
+            `;
+            playlistContainer.appendChild(div);
+        }
+    }
+    
+    function rateSong(songId, ratingValue) {
+        var activeUsrRaw = localStorage.getItem(muse_active_user);
+        var activeUsr = activeUsrRaw ? JSON.parse(activeUsrRaw) : null;
+
+
+        if (!activeUsr) return;
+        saveRating(activeUsr.id, songId, ratingValue, currentContext);
+        refreshRecommedations(); // misspelled**
+    }
+    
+    function refreshRecommedations() {
+        var userRaw = localStorage.getItem(muse_active_user);
+        var user = userRaw ? JSON.parse(userRaw) : null;
+
+
+        if (!user) return;
+        var recs = fetchRecommedations(user.id, currentMood, currentContext);
+
+        renderPlaylistToUI(recs);
+    }
+    
+    function generateNewMix() {
+        refreshRecommedations();
+    }
+    
+    function setMood(moodVal, btn) {
+        currentMood = moodVal;
+
+        var allChips = document.querySelectorAll('.mood-chip');
+
+        for (var i = 0; i < allChips.length; i++) {
+
+            allChips[i].classList.remove('active');
+        }
+        btn.classList.add('active');
+        refreshRecommedations();
+    }
+    
+    function setContext(ctxVal, btn) {
+        currentContext = ctxVal;
+        var allChips = document.querySelectorAll('.context-chip');
+
+
+        for (var i = 0; i < allChips.length; i++) {
+            allChips[i].classList.remove('active');
+
+
+        }
+        btn.classList.add('active');
+        refreshRecommedations();
+    }
+    
+    function renderMainDashboard() {
+        var userRaw = localStorage.getItem(muse_active_user);
+        var user = userRaw ? JSON.parse(userRaw) : null;
+
+        if (!user) { renderAuth(); return; }
+
+        var logsRaw = localStorage.getItem(muse_feedback_log);
+
+
+        var logs = logsRaw ? JSON.parse(logsRaw) : {};
+
+
+
+
+        var userHistory = logs[user.id] || [];
+        
+        // use for loop instead of map/slice/filter
+        var recentActs = '';
+        var count = 0;
+
+
+        for (var i = 0; i < userHistory.length && count < 3; i++) {
+
+            
+            var h = userHistory[i];
+            
+            var allSRaw = localStorage.getItem(muse_songs_db);
+            var allS = allSRaw ? JSON.parse(allSRaw) : [];
+            
+            var songMatch = null;
+            for (var j = 0; j < allS.length; j++) {
+            
+                if (allS[j].id === h.songId) {
+                    songMatch = allS[j];
+                    break;
+                }
+            }
+            if (songMatch) {
+                recentActs += `🎵 ${songMatch.title} ${h.score > 0 ? '❤️' : '💔'}, `;
+                count++;
+            }
+        }
+        if (!recentActs) recentActs = 'no ratings yet';
+        
+        var adminBtn = user.isAdmin ? `<button class="btn-outline-sm" onclick="openAdminPanel()"><i class="fas fa-cog"></i> Admin</button>` : '';
+        
+        var rootDiv = document.getElementById('rootApp');
+        rootDiv.innerHTML = `
+            <div class="card-panel">
+                <div class="flex-row">
+
+
+                    <h2 style="font-size:1.7rem;">Musetify</h2>
+                    <div style="display:flex; gap:8px;">
+
+
+                        ${adminBtn}
+                        <button class="btn-outline-sm" onclick="logout()">Exit</button>
+
+
+                    </div>
+                </div>
+                <div style="margin-top: 8px;"><span class="badge">@${user.username} ${user.isAdmin ? '👑' : ''}</span></div>
+            </div>
+            
+
+
+
+            <div class="card-panel">
+                <div style="font-weight:500; margin-bottom:4px;">🎭 How you feelin'?</div>
+                <div class="mood-grid" id="moodGridContainer">
+
+
+                    <div class="mood-chip ${currentMood === 'happy' ? 'active' : ''}" onclick="setMood('happy', this)">😊 Happy</div>
+
+                    <div class="mood-chip ${currentMood === 'sad' ? 'active' : ''}" onclick="setMood('sad', this)">😢 Sad</div>
+                   
+                   
+                    <div class="mood-chip ${currentMood === 'focus' ? 'active' : ''}" onclick="setMood('focus', this)">🧠 Focus</div>
+
+                    <div class="mood-chip ${currentMood === 'energetic' ? 'active' : ''}" onclick="setMood('energetic', this)">⚡ Energetic</div>
+                    <div class="mood-chip ${currentMood === 'relax' ? 'active' : ''}" onclick="setMood('relax', this)">😌 Relax</div>
+                </div>
+
+              
+              
+                <div style="font-weight:500; margin:12px 0 4px;">🏃 What are you doing?</div>
+              
+                <div class="context-grid" id="contextGridContainer">
+
+
+                    <div class="context-chip ${currentContext === 'work' ? 'active' : ''}" onclick="setContext('work', this)">💻 Work/Coding</div>
+                    <div class="context-chip ${currentContext === 'workout' ? 'active' : ''}" onclick="setContext('workout', this)">💪 Workout/Gym</div>
+                   
+                   
+                    <div class="context-chip ${currentContext === 'relax' ? 'active' : ''}" onclick="setContext('relax', this)">🛋️ Chill/Relax</div>
+                </div>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="generateNewMix()">⟳ Refresh my mix</button>
+            </div>
+            
+            <div id="playlistSection" class="card-panel hidden">
+
+
+
+                <h3 style="margin-bottom: 12px;">✨ your fresh picks</h3>
+                <div id="dynamicPlaylist"></div>
+
+
+            </div>
+            
+            <div class="card-panel">
+                <div class="flex-row"><span>📋 recent activity</span></div>
+                
+                
+                <div style="font-size:13px; margin-top:8px; color:#b9c7d9;">${recentActs}</div>
+                
+                
+                <div style="font-size:11px; margin-top:6px; color:#6b7280;"><i class="fas fa-info-circle"></i> Like/Dislike songs to improve recommendations!</div>
+            </div>
+        `;
+        var initialRecs = fetchRecommedations(user.id, currentMood, currentContext);
+        renderPlaylistToUI(initialRecs);
+    }
+    
+    //admin (compl35ted. ) (Withh out backend)) ((Easy Funtion : Manage users and Songs.))
+    function openAdminPanel() {
+        var userRaw = localStorage.getItem(muse_active_user);
+        var user = userRaw ? JSON.parse(userRaw) : null;
+
+        if (!user || !user.isAdmin) return alert("Admin access only");
+
+        var modalDiv = document.createElement('div');
+
+        modalDiv.className = 'admin-modal';
+
+        modalDiv.innerHTML = `
+
+
+            <div class="admin-card">
+                <div class="flex-row"><h3>🛠️ Admin Panel</h3><button class="btn-outline-sm" onclick="this.closest('.admin-modal').remove()">Close</button></div>
+                <div style="margin: 12px 0;"><button class="btn-outline-sm" onclick="showAdminUsers()">👥 Users</button> <button class="btn-outline-sm" onclick="showAdminSongs()">🎵 Songs</button></div>
+                <div id="adminInnerPanel">loading...</div>
+            </div>
+        `;
+        document.body.appendChild(modalDiv);
+        showAdminUsers();
+    }
+    
+    function showAdminUsers() {
+
+        var raw = localStorage.getItem(muse_users_db);
+        var users = raw ? JSON.parse(raw) : [];
+        var panel = document.getElementById('adminInnerPanel');
+
+
+        if (!panel) return;
+
+
+        var rows = '';
+
+
+        for (var i = 0; i < users.length; i++) {
+            var u = users[i];
+
+            var action = u.id !== 1001 ? `<button class="btn-outline-sm" onclick="delUser(${u.id})">Delete</button>` : '<span style="color:#6b7280;">protected</span>';
+            rows += `<tr><td>${u.username}</td><td>${u.isAdmin ? 'Admin' : 'Regular'}</td><td>${action}</td></tr>`;
+        }
+        panel.innerHTML = `<table><thead><tr><th>User</th><th>Role</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+    
+    function showAdminSongs() {
+        var raw = localStorage.getItem(muse_songs_db);
+        var songs = raw ? JSON.parse(raw) : [];
+
+
+        var panel = document.getElementById('adminInnerPanel');
+
+
+        if (!panel) return;
+
+        var rows = '';
+        for (var i = 0; i < songs.length; i++) {
+            var s = songs[i];
+            rows += `<tr><td>${s.title}</td><td>${s.artist}</td><td><button class="btn-outline-sm" onclick="delSong(${s.id})">Remove</button></td></tr>`;
+        }
+        panel.innerHTML = `<button class="btn-outline-sm" onclick="addSongPrompt()" style="margin-bottom:12px;">➕ Add new song</button>
+        <div style="overflow-x:auto;"><table><thead><tr><th>Title</th><th>Artist</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    }
+    
+    window.delUser = (uid) => {
+        if(!confirm("Delete user permanently?")) return;
+
+        var raw = localStorage.getItem(muse_users_db);
+
+        var users = raw ? JSON.parse(raw) : [];
+        var newUsers = [];
+
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].id !== uid) newUsers.push(users[i]);
+
+        }
+        localStorage.setItem(muse_users_db, JSON.stringify(newUsers));
+
+
+
+        showAdminUsers();
+    };
+    window.delSong = (sid) => {
+        if(!confirm("Remove song from library?")) return;
+        var raw = localStorage.getItem(muse_songs_db);
+        var songs = raw ? JSON.parse(raw) : [];
+        var newSongs = [];
+
+
+
+        for (var i = 0; i < songs.length; i++) {
+            if (songs[i].id !== sid) newSongs.push(songs[i]);
+        }
+        localStorage.setItem(muse_songs_db, JSON.stringify(newSongs));
+        showAdminSongs();
+    };
+    window.addSongPrompt = () => {
+        var title = prompt("Song title?");
+        var artist = prompt("Artist?");
+        if(!title || !artist) return;
+        var genre = prompt("Genre (optional):") || "Indie";
+        var raw = localStorage.getItem(muse_songs_db);
+        var songs = raw ? JSON.parse(raw) : [];
+
+
+
+
+        songs.push({
+            id: Date.now(), 
+            title: title, 
+            artist: artist, 
+            genre: genre, 
+            energy: 0.6, 
+            valence: 0.6,
+            vibe: ["general"], 
+            url: "https://youtu.be/dQw4w9WgXcQ"
+
+
+        });
+        localStorage.setItem(muse_songs_db, JSON.stringify(songs));
+        showAdminSongs();
+    };
+    window.showAdminUsers = showAdminUsers;
+    window.showAdminSongs = showAdminSongs;
+    
+    // click handlers and global functions
+    window.handleLogin = handleLogin;
+    window.handleRegister = handleRegister;
+    window.showRegisterForm = showRegisterForm;
+    window.hideRegisterForm = hideRegisterForm;
+    window.logout = logout;
+    window.setMood = setMood;
+    window.setContext = setContext;
+    window.generateNewMix = generateNewMix;
+    window.rateSong = rateSong;
+    window.openAdminPanel = openAdminPanel;
+    window.dispatchChat = dispatchChat;
+    window.openChatWindow = openChatWindow;
+    window.closeChatWindow = closeChatWindow;
+    window.refreshRecommedations = refreshRecommedations;
+    
+    // default songs database , users, and feedback log
+    function initDatabase() {
+        console.log("DEBUG: initDatabase starting");
+        var rawUsers = localStorage.getItem(muse_users_db);
+
+
+        if (!rawUsers) {
+            var defaultUsers = [
+                { id: 1001, username: "admin", password: "admin123", isAdmin: 1 },
+
+            ];
+
+
+
+            localStorage.setItem(muse_users_db, JSON.stringify(defaultUsers));
+        }
+        var rawSongs = localStorage.getItem(muse_songs_db);
+        if (!rawSongs) {
+
+
+            console.log("DEBUG: creating default tracks");
+
+            var tracks = [
+                { id: 201, title: "Midnight City", artist: "M83", genre: "Synthwave", energy: 0.78, valence: 0.45, vibe: ["focus", "chill"], url: "https://youtu.be/dX3k_QDnzHE" },
+                { id: 202, title: "Levitating", artist: "Dua Lipa", genre: "Pop", energy: 0.85, valence: 0.88, vibe: ["happy", "workout"], url: "https://youtu.be/TUVcZfQe-Kw" },
+                { id: 203, title: "Runaway", artist: "Kanye West", genre: "Hip Hop", energy: 0.62, valence: 0.28, vibe: ["emotional", "sad"], url: "https://youtu.be/Bm5iA4ZuPTM" },
+                { id: 204, title: "Dreams", artist: "Fleetwood Mac", genre: "Rock", energy: 0.55, valence: 0.7, vibe: ["relax", "nostalgic"], url: "https://youtu.be/Y3cqfSqEeZA" },
+                { id: 205, title: "The Feels", artist: "TWICE", genre: "K-pop", energy: 0.9, valence: 0.92, vibe: ["happy", "dance"], url: "https://youtu.be/f5_wn8mexmM" },
+                { id: 206, title: "In the End", artist: "Linkin Park", genre: "Rock", energy: 0.82, valence: 0.35, vibe: ["focus", "sad"], url: "https://youtu.be/eVTXPUF4Oz4" },
+                { id: 207, title: "Strobe", artist: "deadmau5", genre: "Electronic", energy: 0.68, valence: 0.5, vibe: ["focus", "chill"], url: "https://youtu.be/tKi9Z-f6qX4" },
+                { id: 208, title: "Happy", artist: "Pharrell Williams", genre: "Pop", energy: 0.92, valence: 0.96, vibe: ["happy", "workout"], url: "https://youtu.be/ZbZSe6N_BXs" },
+                { id: 209, title: "Gymnopédie No.1", artist: "Erik Satie", genre: "Classical", energy: 0.1, valence: 0.2, vibe: ["relax", "focus"], url: "https://youtu.be/S-Xm7s9eGxU" },
+                { id: 210, title: "Blinding Lights", artist: "The Weeknd", genre: "Synth-pop", energy: 0.88, valence: 0.79, vibe: ["happy", "workout"], url: "https://youtu.be/4NRXx6U8ABQ" },
+                { id: 211, title: "Lose Yourself", artist: "Eminem", genre: "Hip-Hop", energy: 0.91, valence: 0.48, vibe: ["focus", "motivation"], url: "https://youtu.be/_Yhyp-_hX2s" }
+            ];
+            localStorage.setItem(muse_songs_db, JSON.stringify(tracks));
+        }
+
+
+        var rawFeedback = localStorage.getItem(muse_feedback_log);
+        if (!rawFeedback) localStorage.setItem(muse_feedback_log, JSON.stringify({}));
+        console.log("DEBUG: database init done");
+    }
+    
+
+
+
+//run main cmd
+    initDatabase();
+    if (localStorage.getItem(muse_active_user)) {
+        renderMainDashboard();
+    } else {
+        renderAuth();
+    }
+
+
+</script>
+</body>
+</html>
